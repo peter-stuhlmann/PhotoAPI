@@ -12,13 +12,13 @@
 ![request](https://img.shields.io/badge/GET-orange.svg) &nbsp; To get images by Peter R. Stuhlmann Photography use the following GET requests. You will get the response in JSON format.
 
 **All images**
-[https://photo-api.peter-stuhlmann.now.sh/images](https://photo-api.peter-stuhlmann.now.sh/images)
+[https://photo-api.peter-stuhlmann.now.sh/v1/images](https://photo-api.peter-stuhlmann.now.sh/v1/images)
 
 **All images of a category**
-[https://photo-api.peter-stuhlmann.now.sh/images/category/portraits](https://photo-api.peter-stuhlmann.now.sh/images/category/portraits)
+[https://photo-api.peter-stuhlmann.now.sh/v1/images/category/portraits](https://photo-api.peter-stuhlmann.now.sh/v1/images/category/portraits)
 
 **One specific image (by ID)**
-[https://photo-api.peter-stuhlmann.now.sh/images/1](https://photo-api.peter-stuhlmann.now.sh/images/1)
+[https://photo-api.peter-stuhlmann.now.sh/v1/images/1](https://photo-api.peter-stuhlmann.now.sh/v1/images/1)
 
 ---
 

@@ -1,24 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 3112;
-const { images } = require('./data');
+const v1 = require('./v1');
 
-app.get('/images', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-  return res.json(images);
-});
-
-app.get('/images/:id', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-  return res.json(images.filter(img => img.id === req.params.id));
-});
-
-app.get('/images/category/:category', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-  return res.json(images.filter(img => img.category === req.params.category));
-});
+app.use('/v1', v1);
 
 app.listen(port, () => console.log(`API listening on port ${port}`));
