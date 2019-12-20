@@ -1,4 +1,4 @@
-const { imageList } = require('./images');
+const { imageList } = require('../data/images');
 
 exports.images = imageList.map(entry => {
   return {

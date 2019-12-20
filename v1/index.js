@@ -1,6 +1,6 @@
 const express = require('express');
 const v1 = express.Router();
-const { images } = require('../data');
+const { images } = require('./model');
 
 v1.get('/images', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
