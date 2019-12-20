@@ -15,10 +15,10 @@
 [https://photo-api.peter-stuhlmann.now.sh/v1/images](https://photo-api.peter-stuhlmann.now.sh/v1/images)
 
 **All images of a category**
-[https://photo-api.peter-stuhlmann.now.sh/v1/images/category/portraits](https://photo-api.peter-stuhlmann.now.sh/v1/images/category/portraits)
+[https://photo-api.peter-stuhlmann.now.sh/v1/images?category=portraits](https://photo-api.peter-stuhlmann.now.sh/v1/images?category=portraits)
 
 **One specific image (by ID)**
-[https://photo-api.peter-stuhlmann.now.sh/v1/images/1](https://photo-api.peter-stuhlmann.now.sh/v1/images/1)
+[https://photo-api.peter-stuhlmann.now.sh/v1/images?id=1](https://photo-api.peter-stuhlmann.now.sh/v1/images?id=1)
 
 ---
 
