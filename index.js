@@ -5,4 +5,8 @@ const v1 = require('./v1');
 
 app.use('/v1', v1);
 
+app.get('/docs', (req, res) => {
+  res.redirect('https://github.com/peter-stuhlmann/PhotoAPI/');
+});
+
 app.listen(port, () => console.log(`API listening on port ${port}`));
