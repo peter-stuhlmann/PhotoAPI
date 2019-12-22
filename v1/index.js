@@ -6,38 +6,26 @@ v1.get('/images', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
 
-  if (req.query.id) {
-    return res.json(images.filter(img => img.id === parseInt(req.query.id)));
-  }
+  const filterFunction = (image, query) => {
+    const keys = Object.keys(query);
+    for (const key of keys) {
+      if (!image[key]) {
+        return false;
+      }
+      if (Array.isArray(image[key])) {
+        const keyArray = image[key].filter(item => item === query[key]);
+        if (keyArray.length === 0) {
+          return false;
+        }
+      } else if (image[key].toString() !== query[key]) {
+        return false;
+      }
+    }
+    return true;
+  };
 
-  if (req.query.category) {
-    return res.json(images.filter(img => img.category === req.query.category));
-  }
-
-  if (req.query.height) {
-    return res.json(
-      images.filter(img => img.height === parseInt(req.query.height))
-    );
-  }
-
-  if (req.query.width) {
-    return res.json(
-      images.filter(img => img.width === parseInt(req.query.width))
-    );
-  }
-
-  if (req.query.orientation) {
-    return res.json(
-      images.filter(img => img.orientation === req.query.orientation)
-    );
-  }
-
-  if (req.query.location) {
-    return res.json(images.filter(img => img.location === req.query.location));
-  }
-
-  if (req.query.model) {
-    return res.json(images.filter(img => img.model === req.query.model));
+  if (req.query) {
+    return res.json(images.filter(img => filterFunction(img, req.query)));
   }
 
   return res.json(images);
