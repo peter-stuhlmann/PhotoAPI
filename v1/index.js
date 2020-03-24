@@ -35,4 +35,15 @@ v1.get('/images', (req, res) => {
   return res.json(images);
 });
 
+v1.get('/images/random', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Type', 'application/json');
+
+  var min = 0;
+  var max = images.length;
+  var random = Math.floor(Math.random() * (max - min)) + min;
+
+  return res.json(images[random]);
+});
+
 module.exports = v1;

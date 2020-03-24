@@ -20,6 +20,9 @@
 **One specific image (by ID)**
 [https://photo-api.peter-stuhlmann.now.sh/v1/images?id=1](https://photo-api.peter-stuhlmann.now.sh/v1/images?id=1)
 
+**One random image**
+[https://photo-api.peter-stuhlmann.now.sh/v1/images/random](https://photo-api.peter-stuhlmann.now.sh/v1/images/random)
+
 ---
 
 [&copy; Peter R. Stuhlmann](https://peter-stuhlmann-webentwicklung.de). All rights reserved.
