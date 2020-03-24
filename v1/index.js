@@ -2,6 +2,10 @@ const express = require('express');
 const v1 = express.Router();
 const { images } = require('./model');
 
+v1.get('/', (req, res) => {
+  res.redirect('/v1/images');
+});
+
 v1.get('/images', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
