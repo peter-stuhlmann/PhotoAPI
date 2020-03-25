@@ -28,11 +28,7 @@ v1.get('/images', (req, res) => {
     return true;
   };
 
-  if (req.query) {
-    return res.json(images.filter(img => filterFunction(img, req.query)));
-  }
-
-  return res.json(images);
+  return res.json(images.filter(img => filterFunction(img, req.query)));
 });
 
 v1.get('/images/random', (req, res) => {
