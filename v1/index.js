@@ -18,7 +18,11 @@ v1.get('/images', (req, res) => {
       if (!image[key]) {
         if (key === 'amount') {
           amount = query[key];
-          return true;
+          if (amount.match(/[0-9]/g)) {
+            return true;
+          } else {
+            return false;
+          }
         } else {
           return false;
         }
