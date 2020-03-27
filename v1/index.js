@@ -1,6 +1,6 @@
 const express = require('express');
 const v1 = express.Router();
-const { images } = require('./model');
+const { Photos } = require('../db/model');
 
 v1.get('/', (req, res) => {
   res.redirect('/v1/images');
@@ -39,20 +39,31 @@ v1.get('/images', (req, res) => {
     return true;
   };
 
-  return res.json(
-    images.filter(img => filterFunction(img, req.query)).slice(0, amount)
-  );
+  try {
+    Photos.find().then(images =>
+      res.json(
+        images.filter(img => filterFunction(img, req.query)).slice(0, amount)
+      )
+    );
+  } catch (e) {
+    console.log('Error!');
+  }
 });
 
 v1.get('/images/random', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
 
-  var min = 0;
-  var max = images.length;
-  var random = Math.floor(Math.random() * (max - min)) + min;
-
-  return res.json(images[random]);
+  try {
+    Photos.find().then(images => {
+      var min = 0;
+      var max = images.length;
+      var random = Math.floor(Math.random() * (max - min)) + min;
+      return res.json(images[random]);
+    });
+  } catch (e) {
+    console.log('Error!');
+  }
 });
 
 module.exports = v1;
