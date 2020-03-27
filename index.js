@@ -3,6 +3,9 @@ const app = express();
 const port = 3112;
 const v1 = require('./v1');
 const connectMongo = require('./db/db');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 try {
   connectMongo();
