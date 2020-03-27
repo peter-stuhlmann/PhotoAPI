@@ -1,5 +1,6 @@
 const express = require('express');
 const v1 = express.Router();
+const { initialData } = require('../data/initialData');
 const { Photos } = require('../db/model');
 
 v1.get('/', (req, res) => {
@@ -60,6 +61,23 @@ v1.get('/images/random', (req, res) => {
       var max = images.length;
       var random = Math.floor(Math.random() * (max - min)) + min;
       return res.json(images[random]);
+    });
+  } catch (e) {
+    console.log('Error!');
+  }
+});
+
+v1.post('/images/fill-empty-db', (req, res) => {
+  try {
+    Photos.find().then(data => {
+      if (data.length == 0) {
+        for (image of initialData) {
+          new Photos(image).save();
+        }
+        res.status(200).send('Success! Database is filled.');
+      } else {
+        res.status(400).send('Error! Database is not empty.');
+      }
     });
   } catch (e) {
     console.log('Error!');
