@@ -3,8 +3,13 @@ const images = express.Router();
 
 const Photo = require('../db/model');
 
-images.get('/', (req, res) => {
-  res.send('We are on /v1/images.');
+images.get('/', async (req, res) => {
+  try {
+    const photos = await Photo.find();
+    res.json(photos);
+  } catch (err) {
+    res.json({ message: err });
+  }
 });
 
 images.post('/', async (req, res) => {
