@@ -14,8 +14,12 @@ images.get('/', async (req, res) => {
 
 images.post('/', async (req, res) => {
   const photo = new Photo({
-    title: req.body.title,
     src: req.body.src,
+    alt: req.body.alt,
+    category: req.body.category,
+    location: req.body.location,
+    adultContent: req.body.adultContent,
+    size: req.body.size,
   });
 
   try {
