@@ -26,4 +26,13 @@ images.post('/', async (req, res) => {
   }
 });
 
+images.delete('/:id', async (req, res) => {
+  try {
+    const removedPhoto = await Photo.remove({ _id: req.params.id });
+    res.json(removedPhoto);
+  } catch (err) {
+    req.json({ message: err });
+  }
+});
+
 module.exports = images;
