@@ -5,6 +5,7 @@ const port = 3112;
 const v1 = require('./v1');
 const connectMongo = require('./db/db');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 try {
   connectMongo();
@@ -12,6 +13,7 @@ try {
   console.log('Error!!!');
 }
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/v1', v1);
