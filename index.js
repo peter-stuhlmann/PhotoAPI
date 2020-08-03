@@ -1,14 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3112;
 const v1 = require('./v1');
 const connectMongo = require('./db/db');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 try {
   connectMongo();
 } catch (e) {
   console.log('Error!!!');
 }
+
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use('/v1', v1);
 

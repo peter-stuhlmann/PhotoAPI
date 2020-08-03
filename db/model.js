@@ -1,8 +1,36 @@
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
-  title: String,
-  src: String,
-});
+const photoSchema = mongoose.Schema(
+  {
+    src: {
+      type: String,
+      required: true,
+    },
+    alt: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+    },
+    adultContent: {
+      type: Boolean,
+      default: false,
+    },
+    size: {
+      width: {
+        type: Number,
+      },
+      height: {
+        type: Number,
+      },
+    },
+  },
+  { versionKey: false }
+);
 
-exports.Photos = mongoose.model('photos', schema);
+module.exports = mongoose.model('Photo', photoSchema);
