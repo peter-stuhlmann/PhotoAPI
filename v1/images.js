@@ -18,7 +18,7 @@ images.get('/', async (req, res) => {
         adultContent: photo.adultContent,
       });
 
-      if (photo.size) {
+      if (photo.size.width || photo.size.height) {
         Object.assign(responseObject, {
           size: {
             width: photo.size.width,
