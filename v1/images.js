@@ -35,6 +35,35 @@ images.get('/', async (req, res) => {
   }
 });
 
+images.get('/:id', async (req, res) => {
+  try {
+    const photo = await Photo.find({ _id: req.params.id });
+    const response = {};
+
+    Object.assign(response, {
+      id: photo[0].id,
+      src: photo[0].src,
+      alt: photo[0].alt,
+      category: photo[0].category,
+      location: photo[0].location,
+      adultContent: photo[0].adultContent,
+    });
+
+    if (photo[0].size.width || photo[0].size.height) {
+      Object.assign(response, {
+        size: {
+          width: photo[0].size.width,
+          height: photo[0].size.height,
+        },
+      });
+    }
+
+    res.json(response);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 images.post('/', async (req, res) => {
   const photo = new Photo({
     src: req.body.src,
