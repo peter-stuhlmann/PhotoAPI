@@ -6,7 +6,30 @@ const Photo = require('../db/model');
 images.get('/', async (req, res) => {
   try {
     const photos = await Photo.find();
-    res.json(photos);
+    const response = photos.map((photo) => {
+      const responseObject = {};
+
+      Object.assign(responseObject, {
+        id: photo.id,
+        src: photo.src,
+        alt: photo.alt,
+        category: photo.category,
+        location: photo.location,
+        adultContent: photo.adultContent,
+      });
+
+      if (photo.size) {
+        Object.assign(responseObject, {
+          size: {
+            width: photo.size.width,
+            height: photo.size.height,
+          },
+        });
+      }
+
+      return responseObject;
+    });
+    res.json(response);
   } catch (err) {
     res.json({ message: err });
   }
