@@ -35,6 +35,40 @@ images.get('/', async (req, res) => {
   }
 });
 
+images.get('/random', async (req, res) => {
+  try {
+    const photos = await Photo.find();
+
+    const min = 0;
+    const max = photos.length;
+    const random = Math.floor(Math.random() * (max - min)) + min;
+
+    const response = {};
+
+    Object.assign(response, {
+      id: photos[random].id,
+      src: photos[random].src,
+      alt: photos[random].alt,
+      category: photos[random].category,
+      location: photos[random].location,
+      adultContent: photos[random].adultContent,
+    });
+
+    if (photos[random].size.width || photos[random].size.height) {
+      Object.assign(response, {
+        size: {
+          width: photos[random].size.width,
+          height: photos[random].size.height,
+        },
+      });
+    }
+
+    res.json(response);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 images.get('/:id', async (req, res) => {
   try {
     const photo = await Photo.find({ _id: req.params.id });
