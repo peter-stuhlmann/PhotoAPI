@@ -3,7 +3,7 @@ const v1 = express.Router();
 const images = require('./images');
 
 v1.get('/', (req, res) => {
-  res.send('We are on /v1.');
+  res.redirect('/v1/images');
 });
 
 v1.use('/images', images);
