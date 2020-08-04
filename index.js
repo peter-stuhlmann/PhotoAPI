@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3112;
+const port = process.env.PORT || 4000;
 const v1 = require('./v1');
 const connectMongo = require('./db/db');
 const bodyParser = require('body-parser');
