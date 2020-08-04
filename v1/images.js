@@ -5,7 +5,7 @@ const Photo = require('../db/model');
 
 images.get('/', async (req, res) => {
   try {
-    const photos = await Photo.find();
+    const photos = await Photo.find(req.query);
     const response = photos.map((photo) => {
       const responseObject = {};
 
@@ -37,7 +37,7 @@ images.get('/', async (req, res) => {
 
 images.get('/random', async (req, res) => {
   try {
-    const photos = await Photo.find();
+    const photos = await Photo.find(req.query);
 
     const min = 0;
     const max = photos.length;
